@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the transmission.pavelprosto package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: transmission.pavelprosto\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-13 23:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/ExportPage.qml:34
+msgid "    Save or Open with:"
+msgstr ""
+
+#: ../qml/ImportPage.qml:27
+msgid "    Import .torrent file from:"
+msgstr ""
+
+#: ../qml/Main.qml:88
+msgid ""
+"Torrents list is emty.\n"
+"Click \"+\" to start new Torrent"
+msgstr ""
+
+#: ../qml/Main.qml:182
+msgid "The torrent you are trying to add is already in the list."
+msgstr ""
+
+#: ../qml/Main.qml:186
+msgid "It's not torrent file."
+msgstr ""
+
+#: ../qml/Main.qml:336
+msgid "Are you shure remove this torrent and downloaded files?\n"
+msgstr ""
+
+#: ../qml/Main.qml:338 ../qml/Main.qml:370
+msgid "Remove"
+msgstr ""
+
+#: ../qml/Main.qml:368
+msgid ""
+"Are you shure remove Transmission librory?\n"
+" If you wish to continue using this program, you will have to reinstall the "
+"library."
+msgstr ""
+
+#: ../qml/MenuProg.qml:62
+msgid "Donate"
+msgstr ""
+
+#: ../qml/MenuProg.qml:94 ../qml/TransmissionSettings.qml:34
+msgid "Settings"
+msgstr ""
+
+#: ../qml/MyDialog.qml:12
+msgid "Ok"
+msgstr ""
+
+#: ../qml/MyDialog.qml:54 ../qml/TransmissionInstaller.qml:128
+msgid "Close"
+msgstr ""
+
+#: ../qml/TransmissionInstaller.qml:40 ../qml/TransmissionInstaller.qml:108
+msgid "Transmission not installed"
+msgstr ""
+
+#: ../qml/TransmissionInstaller.qml:88 ../qml/TransmissionInstaller.qml:109
+msgid "Install"
+msgstr ""
+
+#: ../qml/TransmissionInstaller.qml:101
+msgid "Wait ..."
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:58
+msgid "Downlimit"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:83
+msgid "Uplimit"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:107
+msgid "Encryption"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:118
+msgid "Encrypt all peer connections"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:119
+msgid "Prefer encrypted peer connections"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:120
+msgid "Prefer unencrypted peer connections"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:147
+msgid "Remove Transmission librory"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:169
+msgid "Save"
+msgstr ""
+
+#: ../qml/TransmissionSettings.qml:187
+msgid "Cancel"
+msgstr ""
+
+#: ../qml/TransmissionViewer.qml:52
+msgid "Torrent info"
+msgstr ""
+
+#: ../qml/TransmissionViewer.qml:203
+msgid "Resume torrent"
+msgstr ""
+
+#: ../qml/TransmissionViewer.qml:205
+msgid "Pause torrent"
+msgstr ""
+
+#: ../qml/TransmissionViewer.qml:224
+msgid "Remove torrent"
+msgstr ""
+
+#: ../qml/TransmissionViewer.qml:244
+msgid "Files:"
+msgstr ""
+
+#: ../qml/TransmissionViewer.qml:273
+msgid ""
+"File is not ready.\n"
+"Wait for the download to finish."
+msgstr ""
+
+#: transmission.desktop.in.h:1
+msgid "Transmission"
+msgstr ""
