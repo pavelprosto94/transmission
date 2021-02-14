@@ -1,0 +1,16 @@
+{
+    "name": "transmission.pavelprosto",
+    "description": "A simple open source BitTorrent client. Ubuntu Toch port",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Transmission",
+    "hooks": {
+        "transmission": {
+            "apparmor": "transmission.apparmor",
+            "desktop":  "transmission.desktop",
+            "content-hub": "src/content-hub.json"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "Pavel Prosto <pavelprosto94@gmail.com>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
