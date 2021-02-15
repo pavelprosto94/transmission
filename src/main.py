@@ -7,6 +7,7 @@ from threading import Thread
 import os
 import time
 import viewer
+import sys
 
 DLIMIT="-d 512"
 ULIMIT="-u 256"
@@ -15,21 +16,28 @@ CACHEPATH = os.path.abspath(__file__)
 CACHEPATH = CACHEPATH[CACHEPATH.find(".com/")+5:]
 CACHEPATH = "/home/phablet/.cache/"+CACHEPATH[:CACHEPATH.find("/")]
 DOWNLOADPATH = CACHEPATH+"/Download"
+TMPPATH = CACHEPATH+"/tmp"
 RESUMEPATH   = CACHEPATH+"/resume/"
 TORRENTSPATH = CACHEPATH+"/torrents/"
-CMD="transmission/bin/transmission-cli"
-CMD=CMD+" -g \""+CACHEPATH+"/\" -p <port> -w \""+DOWNLOADPATH+"/\" <dlimit> <ulimit> <encryption>"
-#CMD="export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"+CACHEPATH+"/transmission/lib/; "+CMD
-#CMD="export PKG_CONFIG_PATH="+CACHEPATH+"/transmission/lib/pkgconfig; "+CMD
+CMD="transmission-cli"
+CMD=CMD+" --config-dir \""+CACHEPATH+"/\" -p <port> -w \""+DOWNLOADPATH+"/\" <dlimit> <ulimit> <encryption>"
 IGNORE = []
-os.system("killall transmission-cli")
 BGTHREAD = []
 PAUSETORRENT = []
 
+my_env = {"HOME" : CACHEPATH }
+my_env["PWD"] = CACHEPATH
+my_env["TMPDIR"] = CACHEPATH+"/tmp"
+my_env["PATH"] = CACHEPATH+"/transmission/bin"
+my_env["LD_LIBRARY_PATH"] = CACHEPATH+"/transmission/lib/"
+my_env["PKG_CONFIG_PATH"] = CACHEPATH+"/transmission/lib/pkgconfig"
+
 def gettorrentpath():
+    print ("set cachepath:"+CACHEPATH)
     return CACHEPATH
 
 def movefile(namef):
+    print ("set move file:"+namef)
     ans=0
     if namef[namef.rfind("."):]==".torrent":
         if not os.path.exists(CACHEPATH+namef[namef.rfind("/"):]):
@@ -43,6 +51,13 @@ if not os.path.exists(DOWNLOADPATH):
         os.makedirs(DOWNLOADPATH)
     except Exception as e:
         print("Can't create DOWNLOAD dir:\n"+DOWNLOADPATH)
+        print(e)
+
+if not os.path.exists(TMPPATH):
+    try:
+        os.makedirs(TMPPATH)
+    except Exception as e:
+        print("Can't create TMP dir:\n"+TMPPATH)
         print(e)
 
 def settingsLoad():
@@ -151,6 +166,7 @@ class TransmissionThread(Thread):
     def run(self):
         for stdout_line in self._process(CMD+" \""+self.FILENAME+"\"", CACHEPATH):
             self._work(stdout_line)
+            print(stdout_line)
     
     def _work(self, txt):
         txt=txt.replace("\n","")
@@ -191,6 +207,9 @@ class TransmissionThread(Thread):
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT,
                                 universal_newlines=True,
+                                shell=False,
+                                executable=None,
+                                env=my_env,
                                 cwd=path)
         except Exception as e:
             yield strip_color(str(e))

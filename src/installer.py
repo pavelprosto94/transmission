@@ -16,42 +16,6 @@ SCRIPTPATH = os.path.abspath(__file__)
 SCRIPTPATH = SCRIPTPATH[:SCRIPTPATH.rfind('/')+1]
 BGTHREAD = None
 
-def strip_color(s):
-    return re.sub('\x1b\\[(K|.*?m)', '', s)
-
-class cd:
-    """Context manager for changing the current working directory"""
-    def __init__(self, newPath):
-        self.newPath = os.path.expanduser(newPath)
-
-    def __enter__(self):
-        self.savedPath = os.getcwd()
-        os.chdir(self.newPath)
-
-    def __exit__(self, etype, value, traceback):
-        os.chdir(self.savedPath)
-
-def shell_exec(command_string, path=CACHEPATH):
-    yield path+"$ "+command_string+"\n"
-    #os.chdir(path)
-    cmd_args = shlex.split(command_string)
-    try:
-        process = subprocess.Popen(cmd_args,
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.STDOUT,
-                            universal_newlines=True,
-                            cwd=path
-                            )
-    except Exception as e:
-        yield strip_color(str(e))
-    else:
-        for stdout_line in iter(process.stdout.readline, ''):
-            yield strip_color(stdout_line)
-        process.stdout.close()
-        return_code = process.wait()
-        if return_code:
-            raise subprocess.CalledProcessError(return_code, command_string)
-
 class InstallThread(Thread):
     def __init__(self):
         Thread.__init__(self)
@@ -93,11 +57,4 @@ def install():
 
 def checkproc():
     ans=str(platform.processor())
-    return ans
-
-def checkcmd():
-    ans=""
-    command_string="transmission/bin/transmission-cli -h"
-    for stdout_line in shell_exec(command_string):
-        ans+=stdout_line
     return ans

@@ -128,7 +128,7 @@ Item {
                     installbut.text=i18n.tr("Close")
                 });
                 importModule('installer', function () {
-                    pythoninst.call('installer.checkcmd', [], function(ret) {
+                    pythoninst.call('installer.checkproc', [], function(ret) {
                         //myDialog.text = ret
                         //myDialog.visible = true;
                     });

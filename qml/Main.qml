@@ -159,33 +159,35 @@ Window {
             }
         }
         Connections {
-            id: videoimport
+            id: torrentimport
             target: ContentHub
+            property var activeConTransfer
             onImportRequested: {
                 console.log("try add:"+transfer.items[0].url.toString())
-                python.call('main.movefile', [transfer.items[0].url.toString()], function(returnValue) {
+                torrentimport.activeConTransfer=transfer
+                python.call('main.movefile', [torrentimport.activeConTransfer.items[0].url.toString()], function(returnValue) {
                 if (returnValue==1){
                     if (root.torrentpath==""){
                         python.call('main.gettorrentpath', [], function(returnValue) {
                         root.torrentpath=returnValue
-                        transfer.items[0].move(root.torrentpath)
+                        torrentimport.activeConTransfer.items[0].move(root.torrentpath)
                         python.init_transmission();
-                        transfer.finalize()
+                        torrentimport.activeConTransfer.finalize()
                         });
                     }else{
-                    transfer.items[0].move(root.torrentpath)
+                    torrentimport.activeConTransfer.items[0].move(root.torrentpath)
                     python.init_transmission();
-                    transfer.finalize()
+                    torrentimport.activeConTransfer.finalize()
                     }
                 } else if (returnValue==-1)
                 {
                     myDialog.text = i18n.tr("The torrent you are trying to add is already in the list.")
                     myDialog.visible = true;
-                    transfer.finalize()
+                    torrentimport.activeConTransfer.finalize()
                 }else{    
                     myDialog.text = i18n.tr("It's not torrent file.")
                     myDialog.visible = true;
-                    transfer.finalize()
+                    torrentimport.activeConTransfer.finalize()
                 }
                 });
             }
