@@ -33,17 +33,15 @@ class cd:
 
 def shell_exec(command_string, path=CACHEPATH):
     yield path+"$ "+command_string+"\n"
-    os.chdir(CACHEPATH)
+    #os.chdir(path)
     cmd_args = shlex.split(command_string)
     try:
         process = subprocess.Popen(cmd_args,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT,
                             universal_newlines=True,
-                            shell=True,
                             cwd=path
                             )
-        process.communicate("5161")
     except Exception as e:
         yield strip_color(str(e))
     else:
@@ -99,7 +97,7 @@ def checkproc():
 
 def checkcmd():
     ans=""
-    command_string="./transmission/bin/transmission-cli -h"
+    command_string="transmission/bin/transmission-cli -h"
     for stdout_line in shell_exec(command_string):
         ans+=stdout_line
     return ans

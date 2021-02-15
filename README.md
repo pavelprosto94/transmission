@@ -1,7 +1,6 @@
 # Transmission
 
 A simple open source BitTorrent client. Ubuntu Toch port
-![screenshot_big](_resurse/screenshot_big.png)
 
 ## License
 

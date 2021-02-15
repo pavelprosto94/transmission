@@ -17,7 +17,7 @@ CACHEPATH = "/home/phablet/.cache/"+CACHEPATH[:CACHEPATH.find("/")]
 DOWNLOADPATH = CACHEPATH+"/Download"
 RESUMEPATH   = CACHEPATH+"/resume/"
 TORRENTSPATH = CACHEPATH+"/torrents/"
-CMD=CACHEPATH+"/transmission/bin/transmission-cli"
+CMD="transmission/bin/transmission-cli"
 CMD=CMD+" -g \""+CACHEPATH+"/\" -p <port> -w \""+DOWNLOADPATH+"/\" <dlimit> <ulimit> <encryption>"
 #CMD="export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"+CACHEPATH+"/transmission/lib/; "+CMD
 #CMD="export PKG_CONFIG_PATH="+CACHEPATH+"/transmission/lib/pkgconfig; "+CMD
