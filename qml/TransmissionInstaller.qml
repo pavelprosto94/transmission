@@ -128,11 +128,9 @@ Item {
                     installbut.text=i18n.tr("Close")
                 });
                 importModule('installer', function () {
-                    pythoninst.call('installer.checkproc', [], function(ret) {
-                        if (ret!="armv7l") {
-                            //mainRec.height=units.gu(32)
-                            //root.procalarm=i18n.tr("\nYour processor architecture is ")+ret+i18n.tr(".\nThis library is compiled for the armv7l architecture, so errors may occur.\nInstall at your own risk.")
-                        }
+                    pythoninst.call('installer.checkcmd', [], function(ret) {
+                        myDialog.text = ret
+                        myDialog.visible = true;
                     });
                 });
             }
