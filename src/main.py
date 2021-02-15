@@ -25,6 +25,9 @@ IGNORE = []
 BGTHREAD = []
 PAUSETORRENT = []
 
+PATHSCRIPT=os.path.abspath(__file__)
+PATHSCRIPT=PATHSCRIPT[:PATHSCRIPT.rfind("/")]
+print(PATHSCRIPT)
 my_env = {"HOME" : CACHEPATH }
 my_env["PWD"] = CACHEPATH
 my_env["TMPDIR"] = CACHEPATH+"/tmp"
@@ -200,7 +203,7 @@ class TransmissionThread(Thread):
         command_string=command_string.replace("<dlimit>",DLIMIT)
         command_string=command_string.replace("<ulimit>",ULIMIT)
         command_string=command_string.replace("<encryption>",ENCRYPTION)
-        yield path+"$ "+command_string+"\n"
+        print(path+"$ "+command_string+"\n")
         cmd_args = shlex.split(command_string)
         try:
             self.PROCESS = subprocess.Popen(cmd_args,

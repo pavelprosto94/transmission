@@ -1,14 +1,21 @@
+import pyotherside
+import subprocess
 import os
 import re
 import shlex
-import subprocess
-import pyotherside
 
 CACHEPATH = os.path.abspath(__file__)
 CACHEPATH = CACHEPATH[CACHEPATH.find(".com/")+5:]
 CACHEPATH = "/home/phablet/.cache/"+CACHEPATH[:CACHEPATH.find("/")]
 DOWNLOADPATH = CACHEPATH+"/Download/"
-CMD=CACHEPATH+"/transmission/bin/transmission-show"
+CMD="transmission-show"
+
+my_env = {"HOME" : CACHEPATH }
+my_env["PWD"] = CACHEPATH
+my_env["TMPDIR"] = CACHEPATH+"/tmp"
+my_env["PATH"] = CACHEPATH+"/transmission/bin"
+my_env["LD_LIBRARY_PATH"] = CACHEPATH+"/transmission/lib/"
+my_env["PKG_CONFIG_PATH"] = CACHEPATH+"/transmission/lib/pkgconfig"
 
 def strip_color(s):
     return re.sub('\x1b\\[(K|.*?m)', '', s)
@@ -20,6 +27,9 @@ def _process(command_string, path=""):
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT,
                                 universal_newlines=True,
+                                shell=False,
+                                executable=None,
+                                env=my_env,
                                 cwd=path)
         except Exception as e:
             yield strip_color(str(e))
