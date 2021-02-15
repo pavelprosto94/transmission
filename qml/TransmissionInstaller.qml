@@ -129,8 +129,8 @@ Item {
                 });
                 importModule('installer', function () {
                     pythoninst.call('installer.checkcmd', [], function(ret) {
-                        myDialog.text = ret
-                        myDialog.visible = true;
+                        //myDialog.text = ret
+                        //myDialog.visible = true;
                     });
                 });
             }

@@ -33,9 +33,7 @@ class cd:
 
 def shell_exec(command_string, path=CACHEPATH):
     yield path+"$ "+command_string+"\n"
-    yield os.getcwd()+"\n"
     os.chdir(CACHEPATH)
-    yield os.getcwd()+"\n"
     cmd_args = shlex.split(command_string)
     try:
         process = subprocess.Popen(cmd_args,
@@ -62,12 +60,12 @@ class InstallThread(Thread):
     
     def run(self):
         rez=[0,"txt"]
-        sizeF=os.path.getsize(SCRIPTPATH+"transmission_armv7l.tar.gz")/(1024*16)
+        sizeF=os.path.getsize(SCRIPTPATH+"transmission_armv7l.tar.bz2")/(1024*16)
         i=0
-        in_file = open(SCRIPTPATH+"transmission_armv7l.tar.gz", "rb")
-        out_file = open(CACHEPATH+"/transmission.tar.gz", "wb")
+        in_file = open(SCRIPTPATH+"transmission_armv7l.tar.bz2", "rb")
+        out_file = open(CACHEPATH+"/transmission.tar.bz2", "wb")
         data = in_file.read(1024*16)
-        txt="Copy transmission.tar.gz"
+        txt="Copy transmission.tar.bz2"
         while data:
             out_file.write(data)
             i+=1
@@ -80,13 +78,13 @@ class InstallThread(Thread):
         rez=[rez[0],"Extract transmission"]
         pyotherside.send('progressinstaller', rez)
         time.sleep(0.01)
-        tf = tarfile.open(CACHEPATH+"/transmission.tar.gz")
+        tf = tarfile.open(CACHEPATH+"/transmission.tar.bz2")
         tf.extractall(CACHEPATH)
         tf.close()
         rez=[rez[0],"Cleaning"]
         pyotherside.send('progressinstaller', rez)
         time.sleep(0.01)
-        os.remove(CACHEPATH+"/transmission.tar.gz")
+        os.remove(CACHEPATH+"/transmission.tar.bz2")
         rez=[100,"Success transmission install."]
         pyotherside.send('finishedinstaller', rez)
 
@@ -101,7 +99,7 @@ def checkproc():
 
 def checkcmd():
     ans=""
-    command_string="sudo -S ls"
+    command_string="./transmission/bin/transmission-cli -h"
     for stdout_line in shell_exec(command_string):
         ans+=stdout_line
     return ans
