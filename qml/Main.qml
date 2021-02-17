@@ -38,13 +38,20 @@ Window {
 
     StackView {
         id: stack
-        initialItem: mainView
+        initialItem: complimentView
         anchors.fill: parent
     }
 
+    ComplimentScreen
+    {
+        id: complimentView
+    }
+    
     Item {
         id: mainView
+        visible:false
         property var activeTransfer
+        property bool ready: false
 
         ListView {
             id: grig
@@ -300,7 +307,13 @@ Window {
                     if (returnValue==true){
                         call('main.gettorrentpath', [], function(returnValue) {
                         root.torrentpath=returnValue
-                        call('main.slow_function', [], function(returnValue) {});
+                        call('main.slow_function', [], function(returnValue) {
+                            mainView.ready=true
+                            if (complimentView.ready==true)
+                            {
+                                stack.push(mainView)
+                            }
+                        });
                         });
                     }else{
                         stack.push(installerView)
@@ -315,7 +328,10 @@ Window {
         anchors.fill: parent
         visible: false
         onInsfinished: {
-            stack.pop();
+            if (mainView.ready==true)
+            {stack.pop()}
+            else
+            {stack.push(mainView)}
             python.init_transmission();
         }
     }

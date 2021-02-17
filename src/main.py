@@ -8,67 +8,38 @@ import os
 import time
 import viewer
 import sys
+import glob
 
 DLIMIT="-d 512"
 ULIMIT="-u 256"
 ENCRYPTION="-et"
-CACHEPATH = os.path.abspath(__file__)
-CACHEPATH = CACHEPATH[CACHEPATH.find(".com/")+5:]
-CACHEPATH = "/home/phablet/.cache/"+CACHEPATH[:CACHEPATH.find("/")]
-DOWNLOADPATH = CACHEPATH+"/Download"
-TMPPATH = CACHEPATH+"/tmp"
-RESUMEPATH   = CACHEPATH+"/resume/"
-TORRENTSPATH = CACHEPATH+"/torrents/"
+
 CMD="transmission-cli"
-CMD=CMD+" --config-dir \""+CACHEPATH+"/\" -p <port> -w \""+DOWNLOADPATH+"/\" <dlimit> <ulimit> <encryption>"
+CMD=CMD+" --config-dir \""+glob.CACHEPATH+"/\" -p <port> -w \""+glob.DOWNLOADPATH+"/\" <dlimit> <ulimit> <encryption>"
 IGNORE = []
 BGTHREAD = []
 PAUSETORRENT = []
 
-PATHSCRIPT=os.path.abspath(__file__)
-PATHSCRIPT=PATHSCRIPT[:PATHSCRIPT.rfind("/")]
-print(PATHSCRIPT)
-my_env = {"HOME" : CACHEPATH }
-my_env["PWD"] = CACHEPATH
-my_env["TMPDIR"] = CACHEPATH+"/tmp"
-my_env["PATH"] = CACHEPATH+"/transmission/bin"
-my_env["LD_LIBRARY_PATH"] = CACHEPATH+"/transmission/lib/"
-my_env["PKG_CONFIG_PATH"] = CACHEPATH+"/transmission/lib/pkgconfig"
-
 def gettorrentpath():
-    print ("set cachepath:"+CACHEPATH)
-    return CACHEPATH
+    print ("set cachepath:"+glob.CACHEPATH)
+    return glob.CACHEPATH
 
 def movefile(namef):
     print ("set move file:"+namef)
     ans=0
     if namef[namef.rfind("."):]==".torrent":
-        if not os.path.exists(CACHEPATH+namef[namef.rfind("/"):]):
+        if not os.path.exists(glob.CACHEPATH+namef[namef.rfind("/"):]):
             ans=1
         else:
             ans=-1
     return ans
 
-if not os.path.exists(DOWNLOADPATH):
-    try:
-        os.makedirs(DOWNLOADPATH)
-    except Exception as e:
-        print("Can't create DOWNLOAD dir:\n"+DOWNLOADPATH)
-        print(e)
-
-if not os.path.exists(TMPPATH):
-    try:
-        os.makedirs(TMPPATH)
-    except Exception as e:
-        print("Can't create TMP dir:\n"+TMPPATH)
-        print(e)
-
 def settingsLoad():
     global DLIMIT
     global ULIMIT
     global ENCRYPTION
-    if os.path.exists(CACHEPATH+"/config.cnf"):
-        fo = open(CACHEPATH+"/config.cnf", "r")
+    if os.path.exists(glob.CONFIGPATH+"/config.cnf"):
+        fo = open(glob.CONFIGPATH+"/config.cnf", "r")
         txt=fo.read()
         txt=txt.split("\n")
         fo.close()
@@ -108,7 +79,7 @@ def savesettings(setarray):
     if setarray[2]==1: ENCRYPTION="-ep"
     if setarray[2]==2: ENCRYPTION="-et"
     txt=DLIMIT+"\n"+ULIMIT+"\n"+ENCRYPTION+"\n"
-    fo = open(CACHEPATH+"/config.cnf", "w")
+    fo = open(glob.CONFIGPATH+"/config.cnf", "w")
     fo.write(txt)
     fo.close()
    
@@ -167,7 +138,7 @@ class TransmissionThread(Thread):
             time.sleep(0.01) 
 
     def run(self):
-        for stdout_line in self._process(CMD+" \""+self.FILENAME+"\"", CACHEPATH):
+        for stdout_line in self._process(CMD+" \""+self.FILENAME+"\"", glob.CACHEPATH):
             self._work(stdout_line)
             print(stdout_line)
     
@@ -212,7 +183,7 @@ class TransmissionThread(Thread):
                                 universal_newlines=True,
                                 shell=False,
                                 executable=None,
-                                env=my_env,
+                                env=glob.MY_ENV,
                                 cwd=path)
         except Exception as e:
             yield strip_color(str(e))
@@ -239,8 +210,8 @@ def transmission_create(filename="",ind=-1):
 
 def pauseTorrentLoad():
     global PAUSETORRENT
-    if os.path.exists(CACHEPATH+"/pause.list"):
-        fo = open(CACHEPATH+"/pause.list", "r")
+    if os.path.exists(glob.CACHEPATH+"/pause.list"):
+        fo = open(glob.CACHEPATH+"/pause.list", "r")
         txt=fo.read()
         PAUSETORRENT=txt.split("\n")
         fo.close()
@@ -250,7 +221,7 @@ def pauseTorrentSave():
     for t in PAUSETORRENT:
         if t!="":
             txt+=t+"\n"
-    fo = open(CACHEPATH+"/pause.list", "w")
+    fo = open(glob.CACHEPATH+"/pause.list", "w")
     fo.write(txt)
     fo.close()
 
@@ -293,17 +264,17 @@ def transmission_remove(ind=-1):
 
             shot_filename=listfiles[0]
             shot_filename=shot_filename[shot_filename.rfind("/")+1:]
-            for filetmp in os.listdir(RESUMEPATH):
+            for filetmp in os.listdir(glob.RESUMEPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
-                    adr=os.path.join(RESUMEPATH, filetmp)
+                    adr=os.path.join(glob.RESUMEPATH, filetmp)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
                         print("File not exist:"+filetmp[:len(shot_filename)])
                     break
-            for filetmp in os.listdir(TORRENTSPATH):
+            for filetmp in os.listdir(glob.TORRENTSPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
-                    adr=os.path.join(TORRENTSPATH, filetmp)
+                    adr=os.path.join(glob.TORRENTSPATH, filetmp)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
@@ -311,20 +282,20 @@ def transmission_remove(ind=-1):
                     break
         else:
             shot_filename=listfiles[0]
-            shot_filename=shot_filename[len(DOWNLOADPATH)+1:]
+            shot_filename=shot_filename[len(glob.DOWNLOADPATH)+1:]
             shot_filename=shot_filename[:shot_filename.find("/")]
-            shutil.rmtree(DOWNLOADPATH+"/"+shot_filename, ignore_errors=True)
-            for filetmp in os.listdir(RESUMEPATH):
+            shutil.rmtree(glob.DOWNLOADPATH+"/"+shot_filename, ignore_errors=True)
+            for filetmp in os.listdir(glob.RESUMEPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
-                    adr=os.path.join(RESUMEPATH, filetmp)
+                    adr=os.path.join(glob.RESUMEPATH, filetmp)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
                         print("File not exist:"+filetmp[:len(shot_filename)])
                     break
-            for filetmp in os.listdir(TORRENTSPATH):
+            for filetmp in os.listdir(glob.TORRENTSPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
-                    adr=os.path.join(TORRENTSPATH, filetmp)
+                    adr=os.path.join(glob.TORRENTSPATH, filetmp)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
@@ -338,14 +309,14 @@ def transmission_remove(ind=-1):
         BGTHREAD[ind]=None
         pyotherside.send('removeitem', ind)
 
-def slow_function(path=CACHEPATH):
+def slow_function(path=glob.CACHEPATH):
     global BGTHREAD
     pauseTorrentLoad()
     settingsLoad()
     for filename in os.listdir(path):
         if filename.find(".torrent")>-1:
             sootv=False
-            adr=os.path.join(CACHEPATH, filename)
+            adr=os.path.join(glob.CACHEPATH, filename)
             for i in range(0,len(BGTHREAD)):
                 if BGTHREAD[i]!=None:
                     if BGTHREAD[i].FILENAME==adr:
@@ -357,15 +328,15 @@ def slow_function(path=CACHEPATH):
 
 def check_transmission():
     ans=False
-    if os.path.exists(CACHEPATH+"/transmission"):
+    if os.path.exists(glob.DATAPATH+"/transmission"):
         ans=True
     return ans
 
 def remove_transmission_lib():
-    if os.path.exists(CACHEPATH+"/transmission"):
+    if os.path.exists(glob.DATAPATH+"/transmission"):
         for ind in range(0,len(BGTHREAD)):
             if BGTHREAD[ind]!=None:
                 transmission_stop(ind)
         time.sleep(1)
-        shutil.rmtree(CACHEPATH+"/transmission", ignore_errors=True)
+        shutil.rmtree(glob.DATAPATH+"/transmission", ignore_errors=True)
             

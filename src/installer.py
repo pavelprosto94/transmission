@@ -8,12 +8,9 @@ import os
 import io
 import time
 import tarfile
+import glob
+import shutil
 
-CACHEPATH = os.path.abspath(__file__)
-CACHEPATH = CACHEPATH[CACHEPATH.find(".com/")+5:]
-CACHEPATH = "/home/phablet/.cache/"+CACHEPATH[:CACHEPATH.find("/")]
-SCRIPTPATH = os.path.abspath(__file__)
-SCRIPTPATH = SCRIPTPATH[:SCRIPTPATH.rfind('/')+1]
 BGTHREAD = None
 
 class InstallThread(Thread):
@@ -21,11 +18,15 @@ class InstallThread(Thread):
         Thread.__init__(self)
     
     def run(self):
+        if os.path.exists(glob.CACHEPATH+"/transmission"):
+            shutil.rmtree(glob.CACHEPATH+"/transmission", ignore_errors=True)
+        if os.path.exists(glob.CACHEPATH+"/config.cnf"):
+            os.remove(glob.CACHEPATH+"/config.cnf")
         rez=[0,"txt"]
-        sizeF=os.path.getsize(SCRIPTPATH+"transmission_armv7l.tar.bz2")/(1024*16)
+        sizeF=os.path.getsize(glob.SCRIPTPATH+"/transmission_armv7l.tar.bz2")/(1024*16)
         i=0
-        in_file = open(SCRIPTPATH+"transmission_armv7l.tar.bz2", "rb")
-        out_file = open(CACHEPATH+"/transmission.tar.bz2", "wb")
+        in_file = open(glob.SCRIPTPATH+"/transmission_armv7l.tar.bz2", "rb")
+        out_file = open(glob.DATAPATH+"/transmission.tar.bz2", "wb")
         data = in_file.read(1024*16)
         txt="Copy transmission.tar.bz2"
         while data:
@@ -40,13 +41,13 @@ class InstallThread(Thread):
         rez=[rez[0],"Extract transmission"]
         pyotherside.send('progressinstaller', rez)
         time.sleep(0.01)
-        tf = tarfile.open(CACHEPATH+"/transmission.tar.bz2")
-        tf.extractall(CACHEPATH)
+        tf = tarfile.open(glob.DATAPATH+"/transmission.tar.bz2")
+        tf.extractall(glob.DATAPATH)
         tf.close()
         rez=[rez[0],"Cleaning"]
         pyotherside.send('progressinstaller', rez)
         time.sleep(0.01)
-        os.remove(CACHEPATH+"/transmission.tar.bz2")
+        os.remove(glob.DATAPATH+"/transmission.tar.bz2")
         rez=[100,"Success transmission install."]
         pyotherside.send('finishedinstaller', rez)
 

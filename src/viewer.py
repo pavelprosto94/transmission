@@ -3,20 +3,9 @@ import subprocess
 import os
 import re
 import shlex
+import glob
 
-CACHEPATH = os.path.abspath(__file__)
-CACHEPATH = CACHEPATH[CACHEPATH.find(".com/")+5:]
-CACHEPATH = "/home/phablet/.cache/"+CACHEPATH[:CACHEPATH.find("/")]
-DOWNLOADPATH = CACHEPATH+"/Download/"
 CMD="transmission-show"
-
-my_env = {"HOME" : CACHEPATH }
-my_env["PWD"] = CACHEPATH
-my_env["TMPDIR"] = CACHEPATH+"/tmp"
-my_env["PATH"] = CACHEPATH+"/transmission/bin"
-my_env["LD_LIBRARY_PATH"] = CACHEPATH+"/transmission/lib/"
-my_env["PKG_CONFIG_PATH"] = CACHEPATH+"/transmission/lib/pkgconfig"
-
 def strip_color(s):
     return re.sub('\x1b\\[(K|.*?m)', '', s)
 
@@ -29,7 +18,7 @@ def _process(command_string, path=""):
                                 universal_newlines=True,
                                 shell=False,
                                 executable=None,
-                                env=my_env,
+                                env=glob.MY_ENV,
                                 cwd=path)
         except Exception as e:
             yield strip_color(str(e))
@@ -44,10 +33,10 @@ def _process(command_string, path=""):
 def listFiles(FILENAME):
     files=[]
     stv=False
-    for stdout_line in _process(CMD+" \""+FILENAME+"\"", CACHEPATH):
+    for stdout_line in _process(CMD+" \""+FILENAME+"\"", glob.CACHEPATH):
         if stv==True :
             if " (" in stdout_line:
-                files.append(DOWNLOADPATH+str(stdout_line[2:stdout_line.rfind(" (")]))
+                files.append(glob.DOWNLOADPATH+str(stdout_line[2:stdout_line.rfind(" (")]))
         elif "FILES" in stdout_line:
             stv=True
     return(files)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: transmission.pavelprosto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-15 01:13+0000\n"
+"POT-Creation-Date: 2021-02-17 00:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,29 +25,29 @@ msgstr ""
 msgid "    Import .torrent file from:"
 msgstr ""
 
-#: ../qml/Main.qml:88
+#: ../qml/Main.qml:95
 msgid ""
 "Torrents list is emty.\n"
 "Click \"+\" to start new Torrent"
 msgstr ""
 
-#: ../qml/Main.qml:182
+#: ../qml/Main.qml:191
 msgid "The torrent you are trying to add is already in the list."
 msgstr ""
 
-#: ../qml/Main.qml:186
+#: ../qml/Main.qml:195
 msgid "It's not torrent file."
 msgstr ""
 
-#: ../qml/Main.qml:336
+#: ../qml/Main.qml:354
 msgid "Are you shure remove this torrent and downloaded files?\n"
 msgstr ""
 
-#: ../qml/Main.qml:338 ../qml/Main.qml:370
+#: ../qml/Main.qml:356 ../qml/Main.qml:388
 msgid "Remove"
 msgstr ""
 
-#: ../qml/Main.qml:368
+#: ../qml/Main.qml:386
 msgid ""
 "Are you shure remove Transmission librory?\n"
 " If you wish to continue using this program, you will have to reinstall the "
