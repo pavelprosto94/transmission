@@ -8,7 +8,9 @@ Transmission is a suite of BitTorrent clients. All of its functions are simple, 
 ![screenshot_big.png](_resources/screenshot_big.png)
 
 **This release does not support magnet links (only *.torrent file)**
+
 **Known bugs (fix in future releases)**
+
 - Due to sleep mode, torrent downloads can pause on their own (you have to manually pause and restart).
 *This bug will be fixed after: I teach the app to detect the approximate download time. Then, the program will be able to restart the download on its own.*
 - If your device does not have enough space, then the torrent is added, but it gives an error [Errno 28] No space left on device
