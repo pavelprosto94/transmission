@@ -30,10 +30,11 @@ Image {
         function randomaboutName()
         {
         var aboutName = new Array (
-                "Joan CiberSheep", 
-                "PhoenixLandPirat", 
-                "Brian Douglass", 
-                "DOBEY"
+                "Joan CiberSheep",
+                "Brian Douglass",
+                "@PhoenixLandPirat",
+                "@DOBEY",
+                "@MATTEO"
                 )
         var ind = Math.floor(aboutName.length * Math.random());
         return aboutName[ind]

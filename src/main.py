@@ -21,11 +21,11 @@ BGTHREAD = []
 PAUSETORRENT = []
 
 def gettorrentpath():
-    print ("set cachepath:"+glob.CACHEPATH)
+    #print ("set cachepath:"+glob.CACHEPATH)
     return glob.CACHEPATH
 
 def movefile(namef):
-    print ("set move file:"+namef)
+    #print ("set move file:"+namef)
     ans=0
     if namef[namef.rfind("."):]==".torrent":
         if not os.path.exists(glob.CACHEPATH+namef[namef.rfind("/"):]):
@@ -140,7 +140,7 @@ class TransmissionThread(Thread):
     def run(self):
         for stdout_line in self._process(CMD+" \""+self.FILENAME+"\"", glob.CACHEPATH):
             self._work(stdout_line)
-            print(stdout_line)
+            #print(stdout_line)
     
     def _work(self, txt):
         txt=txt.replace("\n","")
@@ -256,6 +256,7 @@ def transmission_remove(ind=-1):
     
         listfiles=viewer.listFiles(filename)
         if len(listfiles)==1:
+            print("remove file:"+listfiles[0])
             if os.path.exists(listfiles[0]):
                 os.remove(listfiles[0])
             else:
@@ -267,6 +268,7 @@ def transmission_remove(ind=-1):
             for filetmp in os.listdir(glob.RESUMEPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
                     adr=os.path.join(glob.RESUMEPATH, filetmp)
+                    print("remove:"+adr)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
@@ -275,6 +277,7 @@ def transmission_remove(ind=-1):
             for filetmp in os.listdir(glob.TORRENTSPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
                     adr=os.path.join(glob.TORRENTSPATH, filetmp)
+                    print("remove:"+adr)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
@@ -284,10 +287,12 @@ def transmission_remove(ind=-1):
             shot_filename=listfiles[0]
             shot_filename=shot_filename[len(glob.DOWNLOADPATH)+1:]
             shot_filename=shot_filename[:shot_filename.find("/")]
+            print("remove dir:"+glob.DOWNLOADPATH+"/"+shot_filename)
             shutil.rmtree(glob.DOWNLOADPATH+"/"+shot_filename, ignore_errors=True)
             for filetmp in os.listdir(glob.RESUMEPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
                     adr=os.path.join(glob.RESUMEPATH, filetmp)
+                    print("remove:"+adr)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
@@ -296,12 +301,14 @@ def transmission_remove(ind=-1):
             for filetmp in os.listdir(glob.TORRENTSPATH):
                 if shot_filename == filetmp[:len(shot_filename)]:
                     adr=os.path.join(glob.TORRENTSPATH, filetmp)
+                    print("remove:"+adr)
                     if os.path.exists(adr):
                         os.remove(adr)
                     else:
                         print("File not exist:"+filetmp[:len(shot_filename)])
                     break
-
+        
+        print("remove:"+filename)
         if os.path.exists(filename):
             os.remove(filename)
         else:

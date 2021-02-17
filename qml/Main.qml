@@ -325,7 +325,6 @@ Window {
 
     TransmissionInstaller{
         id: installerView
-        anchors.fill: parent
         visible: false
         onInsfinished: {
             if (mainView.ready==true)
@@ -337,7 +336,6 @@ Window {
     }
     TransmissionViewer{
         id: transmissionViewer
-        anchors.fill: parent
         visible: false
         property bool enblcon: false
         onInsfinished: {
@@ -369,17 +367,14 @@ Window {
     }
     ExportPage {
     id: exportPage
-    anchors.fill: parent
     visible: false
     }
     ImportPage {
     id: importPage
-    anchors.fill: parent
     visible: false
     }
     TransmissionSettings {
     id: settingsPage
-    anchors.fill: parent
     visible: false
     property bool enblcon: false
     onTransmissionremove:{

@@ -36,7 +36,7 @@ def listFiles(FILENAME):
     for stdout_line in _process(CMD+" \""+FILENAME+"\"", glob.CACHEPATH):
         if stv==True :
             if " (" in stdout_line:
-                files.append(glob.DOWNLOADPATH+str(stdout_line[2:stdout_line.rfind(" (")]))
+                files.append(glob.DOWNLOADPATH+"/"+str(stdout_line[2:stdout_line.rfind(" (")]))
         elif "FILES" in stdout_line:
             stv=True
     return(files)

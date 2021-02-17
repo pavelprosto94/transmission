@@ -273,6 +273,7 @@ ListView {
                     myDialog.text = i18n.tr("File is not ready.\nWait for the download to finish.")
                     myDialog.visible = true;
                   }else{
+                    console.log("export:"+adr)
                     exportPage.url=adr
                     stack.push(exportPage)
                   }
