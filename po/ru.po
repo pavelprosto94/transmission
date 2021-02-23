@@ -51,7 +51,7 @@ msgstr "Удалить"
 
 #: ../qml/Main.qml:368
 msgid ""
-"Are you shure remove Transmission librory?\n"
+"Are you shure remove Transmission library?\n"
 " If you wish to continue using this program, you will have to reinstall the "
 "library."
 msgstr ""
@@ -112,7 +112,7 @@ msgid "Prefer unencrypted peer connections"
 msgstr "Предпочитать незашифрованные соединения"
 
 #: ../qml/TransmissionSettings.qml:147
-msgid "Remove Transmission librory"
+msgid "Remove Transmission library"
 msgstr "Удалить библиотеку Transmission"
 
 #: ../qml/TransmissionSettings.qml:169

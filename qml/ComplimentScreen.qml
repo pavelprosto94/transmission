@@ -32,7 +32,8 @@ Image {
         var aboutName = new Array (
                 "Joan CiberSheep",
                 "Brian Douglass",
-                "@PhoenixLandPirat",
+                "Heimen Stoffels",
+                "PhoenixLandPirate",
                 "@DOBEY",
                 "@MATTEO"
                 )

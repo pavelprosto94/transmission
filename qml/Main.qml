@@ -378,7 +378,7 @@ Window {
     visible: false
     property bool enblcon: false
     onTransmissionremove:{
-        myDialog.text = i18n.tr("Are you shure remove Transmission librory?\n If you wish to continue using this program, you will have to reinstall the library.")
+        myDialog.text = i18n.tr("Are you shure remove Transmission library?\n If you wish to continue using this program, you will have to reinstall the library.")
         myDialog.okbutton = true;
         myDialog.oktext = i18n.tr("Remove")
         myDialog.visible = true;

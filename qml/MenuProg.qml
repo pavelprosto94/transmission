@@ -75,7 +75,7 @@ OpenButton{
                 {(root.height-units.gu(10))/units.gu(5)}   
             }
             onClicked: {
-                Qt.openUrlExternally("http://dtc1.ru/donate")
+                Qt.openUrlExternally("https://liberapay.com/pavelprosto/")
                 anim2w.start();
             }
     }

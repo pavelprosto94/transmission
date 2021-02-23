@@ -7,7 +7,7 @@ Transmission is a suite of BitTorrent clients. All of its functions are simple, 
 
 ![screenshot_big.png](_resources/screenshot_big.png)
 
-**This release does not support magnet links (only .torrent file)**
+**This release does not support magnet links (only *.torrent file)**
 
 **Known bugs (fix in future releases)**
 

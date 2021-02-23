@@ -144,7 +144,7 @@ Flickable {
     rightMargin: units.gu(2)
   }
     iconName: "delete"
-    text: i18n.tr("Remove Transmission librory")
+    text: i18n.tr("Remove Transmission library")
     colorBut: UbuntuColors.red
     colorButText: "white"
     onClicked: {
