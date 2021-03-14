@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the transmission.pavelprosto package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: transmission.pavelprosto\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-18 17:30+0000\n"
+"PO-Revision-Date: 2021-03-14 19:58+0100\n"
+"Language-Team: UBports spanish team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: j2g2rp\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+#: ../qml/ExportPage.qml:34
+msgid "    Save or Open with:"
+msgstr "Guardar o abrir con:"
+
+#: ../qml/ImportPage.qml:27
+msgid "    Import .torrent file from:"
+msgstr "Importar archivo .torrent desde:"
+
+#: ../qml/Main.qml:95
+msgid ""
+"Torrents list is emty.\n"
+"Click \"+\" to start new Torrent"
+msgstr ""
+"La lista de torrents está vacía.\n"
+"Haga clic en + para comenzar un nuevo torrent."
+
+#: ../qml/Main.qml:191
+msgid "The torrent you are trying to add is already in the list."
+msgstr "El torrent que está intentando añadir ya se encuentra en la lista."
+
+#: ../qml/Main.qml:195
+msgid "It's not torrent file."
+msgstr "No es un fichero torrent."
+
+#: ../qml/Main.qml:352
+msgid "Are you shure remove this torrent and downloaded files?\n"
+msgstr ""
+"¿Está seguro de que desea eliminar este torrent y los archivos "
+"descargados?\n"
+
+#: ../qml/Main.qml:354 ../qml/Main.qml:383
+msgid "Remove"
+msgstr "Eliminar"
+
+#: ../qml/Main.qml:381
+msgid ""
+"Are you shure remove Transmission library?\n"
+" If you wish to continue using this program, you will have to reinstall the "
+"library."
+msgstr ""
+"¿Está seguro de que desea eliminar la biblioteca de Transmission?\n"
+"Si desea continuar usando este programa tendrá que reinstalar la biblioteca."
+
+#: ../qml/MenuProg.qml:62
+msgid "Donate"
+msgstr "Donar"
+
+#: ../qml/MenuProg.qml:94 ../qml/TransmissionSettings.qml:34
+msgid "Settings"
+msgstr "Ajustes"
+
+#: ../qml/MyDialog.qml:12
+msgid "Ok"
+msgstr "Aceptar"
+
+#: ../qml/MyDialog.qml:54 ../qml/TransmissionInstaller.qml:128
+msgid "Close"
+msgstr "Cerrar"
+
+#: ../qml/TransmissionInstaller.qml:40 ../qml/TransmissionInstaller.qml:108
+msgid "Transmission not installed"
+msgstr "Transmission no instalado"
+
+#: ../qml/TransmissionInstaller.qml:88 ../qml/TransmissionInstaller.qml:109
+msgid "Install"
+msgstr "Instalar"
+
+#: ../qml/TransmissionInstaller.qml:101
+msgid "Wait ..."
+msgstr "Espere..."
+
+#: ../qml/TransmissionSettings.qml:58
+msgid "Downlimit"
+msgstr "Limite de descarga"
+
+#: ../qml/TransmissionSettings.qml:83
+msgid "Uplimit"
+msgstr "Limite de subida"
+
+#: ../qml/TransmissionSettings.qml:107
+msgid "Encryption"
+msgstr "Cifrado"
+
+#: ../qml/TransmissionSettings.qml:118
+msgid "Encrypt all peer connections"
+msgstr "Cifrar todas las conexiones de pares"
+
+#: ../qml/TransmissionSettings.qml:119
+msgid "Prefer encrypted peer connections"
+msgstr "Preferir cifrado de conexiones de pares"
+
+#: ../qml/TransmissionSettings.qml:120
+msgid "Prefer unencrypted peer connections"
+msgstr "Preferir conexiones de pares no cifradas"
+
+#: ../qml/TransmissionSettings.qml:147
+msgid "Remove Transmission library"
+msgstr "Eliminar la librería de Transmission"
+
+#: ../qml/TransmissionSettings.qml:169
+msgid "Save"
+msgstr "Guardar"
+
+#: ../qml/TransmissionSettings.qml:187
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../qml/TransmissionViewer.qml:52
+msgid "Torrent info"
+msgstr "Información del torrent"
+
+#: ../qml/TransmissionViewer.qml:203
+msgid "Resume torrent"
+msgstr "Continuar torrent"
+
+#: ../qml/TransmissionViewer.qml:205
+msgid "Pause torrent"
+msgstr "Pausar torrent"
+
+#: ../qml/TransmissionViewer.qml:224
+msgid "Remove torrent"
+msgstr "Eliminar torrent"
+
+#: ../qml/TransmissionViewer.qml:244
+msgid "Files:"
+msgstr "Archivos:"
+
+#: ../qml/TransmissionViewer.qml:273
+msgid ""
+"File is not ready.\n"
+"Wait for the download to finish."
+msgstr "El archivo no está listo. Espere a la descarga para acabar."
+
+#: transmission.desktop.in.h:1
+msgid "Transmission"
+msgstr "Transmission"
