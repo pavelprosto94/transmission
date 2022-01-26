@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: transmission.pavelprosto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-18 17:30+0000\n"
+"POT-Creation-Date: 2022-01-26 13:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,15 +39,15 @@ msgstr ""
 msgid "It's not torrent file."
 msgstr ""
 
-#: ../qml/Main.qml:352
+#: ../qml/Main.qml:339
 msgid "Are you shure remove this torrent and downloaded files?\n"
 msgstr ""
 
-#: ../qml/Main.qml:354 ../qml/Main.qml:383
+#: ../qml/Main.qml:341 ../qml/Main.qml:370
 msgid "Remove"
 msgstr ""
 
-#: ../qml/Main.qml:381
+#: ../qml/Main.qml:368
 msgid ""
 "Are you shure remove Transmission library?\n"
 " If you wish to continue using this program, you will have to reinstall the "
@@ -66,20 +66,8 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: ../qml/MyDialog.qml:54 ../qml/TransmissionInstaller.qml:128
+#: ../qml/MyDialog.qml:54
 msgid "Close"
-msgstr ""
-
-#: ../qml/TransmissionInstaller.qml:40 ../qml/TransmissionInstaller.qml:108
-msgid "Transmission not installed"
-msgstr ""
-
-#: ../qml/TransmissionInstaller.qml:88 ../qml/TransmissionInstaller.qml:109
-msgid "Install"
-msgstr ""
-
-#: ../qml/TransmissionInstaller.qml:101
-msgid "Wait ..."
 msgstr ""
 
 #: ../qml/TransmissionSettings.qml:58
