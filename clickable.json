@@ -1,5 +1,15 @@
 {
   "clickable_minimum_required": "6.20.0",
-  "builder": "pure-qml-cmake",
-  "kill": "qmlscene"
+  "builder": "cmake",
+  "kill": "qmlscene",
+  "dependencies_target": [
+    "transmission-cli"
+  ],
+  "install_bin": [
+    "/usr/bin/transmission-cli"
+  ],
+  "install_lib": [
+    "/usr/lib/${ARCH_TRIPLET}/libnatpmp.so*",
+    "/usr/lib/${ARCH_TRIPLET}/libminiupnpc.so*"
+  ]
 }

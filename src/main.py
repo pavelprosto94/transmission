@@ -14,7 +14,7 @@ DLIMIT="-d 512"
 ULIMIT="-u 256"
 ENCRYPTION="-et"
 
-CMD="transmission-cli"
+CMD=glob.BINPATH+"/transmission-cli"
 CMD=CMD+" --config-dir \""+glob.CACHEPATH+"/\" -p <port> -w \""+glob.DOWNLOADPATH+"/\" <dlimit> <ulimit> <encryption>"
 IGNORE = []
 BGTHREAD = []
@@ -335,15 +335,7 @@ def slow_function(path=glob.CACHEPATH):
 
 def check_transmission():
     ans=False
-    if os.path.exists(glob.DATAPATH+"/transmission"):
+    print(glob.BINPATH)
+    if os.path.exists(glob.BINPATH+"/transmission-cli"):
         ans=True
     return ans
-
-def remove_transmission_lib():
-    if os.path.exists(glob.DATAPATH+"/transmission"):
-        for ind in range(0,len(BGTHREAD)):
-            if BGTHREAD[ind]!=None:
-                transmission_stop(ind)
-        time.sleep(1)
-        shutil.rmtree(glob.DATAPATH+"/transmission", ignore_errors=True)
-            
