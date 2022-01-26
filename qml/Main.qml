@@ -315,25 +315,12 @@ Window {
                             }
                         });
                         });
-                    }else{
-                        stack.push(installerView)
                     }
-                    });
+                 });
             }
         }
     }
 
-    TransmissionInstaller{
-        id: installerView
-        visible: false
-        onInsfinished: {
-            if (mainView.ready==true)
-            {stack.pop()}
-            else
-            {stack.push(mainView)}
-            python.init_transmission();
-        }
-    }
     TransmissionViewer{
         id: transmissionViewer
         visible: false
